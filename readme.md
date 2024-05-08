@@ -9,16 +9,13 @@
 - idea 2021.3.3
 - mysql 8.x
 - navicat 16.x
--
 
 ## 技术选型
 
 - spring
 - springmvc
 - mybatis
-- jsp
 - log4j2日志
-
-
-用户不登录就可以将商品加入购物车，只有当用户下单购买时才要求用户登录，当用户退出系统时，判断用户购物车是否为空，如果不为空就将购物车信息加入数据库
+- junit
+- minio
 
