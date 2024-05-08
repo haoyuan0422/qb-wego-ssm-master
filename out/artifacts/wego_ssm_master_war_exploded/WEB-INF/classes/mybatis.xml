@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--日志-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--开启全局二级主缓存，实体类需要实现Serializable接口-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+    <!--别名：在Mapper文件中的resultType中可以只写类名，而无需带上包名-->
+    <typeAliases>
+        <package name="com.wego.entity.domain"/>
+    </typeAliases>
+    <!--分页-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+    <!-- 扫描指定的包 -->
+    <mappers>
+        <package name="com.wego.mapper"/>
+    </mappers>
+</configuration>

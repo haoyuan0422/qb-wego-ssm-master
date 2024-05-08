@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="fastRequestCurrentParamGroup">
+    <option name="className" value="com.wego.controller.manager.CityController" />
+    <option name="filePath" value="/.fastRequest/collections/ROOT~wego-ssm-jsp~CityController~selectCityByProvinceId.rapi" />
+    <option name="method" value="selectCityByProvinceId" />
+    <option name="module" value="wego-ssm-jsp" />
+    <option name="originUrl" value="/manager/city/selectCityByProvinceId" />
+    <option name="requestParamMap">
+      <map>
+        <entry key="provinceId">
+          <value>
+            <Object />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="returnDocument" value="[{&quot;key&quot;:{},&quot;value&quot;:{}}]" />
+    <option name="tempId" value="" />
+    <option name="url" value="/manager/city/selectCityByProvinceId" />
+  </component>
+</project>

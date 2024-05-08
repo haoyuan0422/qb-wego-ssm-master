@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.mapper.AddressMapper">
+    <resultMap id="BaseResultMap" type="com.wego.entity.domain.Address">
+        <!--@mbg.generated generated on Tue Jul 11 12:41:24 CST 2023.-->
+        <!--@Table tb_address-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="receiver" jdbcType="VARCHAR" property="receiver"/>
+        <result column="country_id" jdbcType="BIGINT" property="countryId"/>
+        <result column="addr" jdbcType="VARCHAR" property="addr"/>
+        <result column="postcode" jdbcType="VARCHAR" property="postcode"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="priority" jdbcType="INTEGER" property="priority"/>
+        <result column="mo_ren" jdbcType="BIT" property="moRen"/>
+        <result column="state" jdbcType="TINYINT" property="state"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Tue Jul 11 12:41:24 CST 2023.-->
+        id, receiver, country_id, addr, postcode, phone, user_id, priority, mo_ren, `state`,
+        create_time, update_time
+    </sql>
+
+    <select id="selectList" parameterType="com.wego.entity.query.AddressQuery" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_address
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="receiver != null and receiver != ''">
+                and receiver like CONCAT( CONCAT('%',#{receiver}),'%')
+            </if>
+            <if test="addr != null and addr != ''">
+                or addr like CONCAT( CONCAT('%',#{addr,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="phone != null and phone != ''">
+                or phone like CONCAT( CONCAT('%',#{phone,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="countryId != null">
+                and country_id = #{countryId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="moRen != null">
+                and mo_ren = #{moRen}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+        </where>
+        order by update_time desc, priority desc
+    </select>
+</mapper>

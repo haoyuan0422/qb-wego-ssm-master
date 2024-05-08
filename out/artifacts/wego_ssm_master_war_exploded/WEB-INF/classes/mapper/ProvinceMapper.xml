@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.mapper.ProvinceMapper">
+    <resultMap id="BaseResultMap" type="Province">
+        <!--@mbg.generated-->
+        <!--@Table tb_province-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="priority" jdbcType="INTEGER" property="priority"/>
+        <result column="state" jdbcType="TINYINT" property="state"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        `name`,
+        area,
+        priority,
+        `state`,
+        create_time,
+        update_time
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from tb_province
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete
+        from tb_province
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="Province" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_province (`name`, area, priority,
+        `state`, create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER},
+        #{state,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="Province" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into tb_province
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="area != null">
+                area,
+            </if>
+            <if test="priority != null">
+                priority,
+            </if>
+            <if test="state != null">
+                `state`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                #{area,jdbcType=VARCHAR},
+            </if>
+            <if test="priority != null">
+                #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="Province">
+        <!--@mbg.generated-->
+        update tb_province
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="area != null">
+                area = #{area,jdbcType=VARCHAR},
+            </if>
+            <if test="priority != null">
+                priority = #{priority,jdbcType=INTEGER},
+            </if>
+            <if test="state != null">
+                `state` = #{state,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="Province">
+        <!--@mbg.generated-->
+        update tb_province
+        set `name` = #{name,jdbcType=VARCHAR},
+        area = #{area,jdbcType=VARCHAR},
+        priority = #{priority,jdbcType=INTEGER},
+        `state` = #{state,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <select id="selectList" resultMap="BaseResultMap" parameterType="com.wego.entity.query.ProvinceQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_province
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name like CONCAT( CONCAT('%',#{name}),'%')
+            </if>
+            <if test="area != null and area != ''">
+                and area like CONCAT( CONCAT('%',#{area}),'%')
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+        </where>
+        order by update_time desc, priority desc
+    </select>
+
+    <update id="batchUpdateSelective" parameterType="java.util.List">
+        <!--@mbg.generated generated on Sat Jul 08 21:43:43 CST 2023.-->
+        update tb_province
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="`name` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.name != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.name,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="area = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.area != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.area,jdbcType=VARCHAR}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="priority = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.priority != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.priority,jdbcType=INTEGER}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="`state` = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.state != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.state,jdbcType=TINYINT}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="create_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.createTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="update_time = case" suffix="end,">
+                <foreach collection="list" index="index" item="item">
+                    <if test="item.updateTime != null">
+                        when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where id in
+        <foreach close=")" collection="list" item="item" open="(" separator=", ">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+
+    <delete id="batchDelete">
+        delete from tb_province
+        where id in
+        <foreach collection="array" index="index" item="item" open="("
+                 separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+</mapper>

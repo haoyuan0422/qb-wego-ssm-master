@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.mapper.OrderCommentMapper">
+    <resultMap id="BaseResultMap" type="OrderComment">
+        <!--@mbg.generated generated on Sat Jul 08 13:43:34 CST 2023.-->
+        <!--@Table tb_order_comment-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="stars" jdbcType="TINYINT" property="stars"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="priority" jdbcType="INTEGER" property="priority"/>
+        <result column="state" jdbcType="TINYINT" property="state"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Sat Jul 08 13:43:34 CST 2023.-->
+        id, content, stars, user_id, order_id, priority, `state`, create_time
+    </sql>
+
+    <select id="selectList" parameterType="com.wego.entity.query.OrderCommentQuery" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_order_comment
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="content != null and content != '' != null">
+                and content like CONCAT( CONCAT('%',#{content}),'%')
+            </if>
+            <if test="stars != null">
+                and stars = #{stars}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+        </where>
+        order by create_time desc, priority desc
+    </select>
+</mapper>

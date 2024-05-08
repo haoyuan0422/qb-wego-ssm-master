@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.mapper.CartItemMapper">
+    <resultMap id="BaseResultMap" type="CartItem">
+        <!--@mbg.generated generated on Tue Jul 11 15:27:38 CST 2023.-->
+        <!--@Table tb_cart_item-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="goods_id" jdbcType="BIGINT" property="goodsId"/>
+        <result column="amount" jdbcType="INTEGER" property="amount"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+        <result column="cart_id" jdbcType="BIGINT" property="cartId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Tue Jul 11 15:27:38 CST 2023.-->
+        id, goods_id, amount, money, cart_id, create_time, update_time
+    </sql>
+
+    <select id="selectList" resultMap="BaseResultMap" parameterType="com.wego.entity.query.CartItemQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_cart_item
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="goodsId != null">
+                and goods_id = #{goodsId}
+            </if>
+            <if test="cartId != null">
+                and cart_id = #{cartId}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+</mapper>

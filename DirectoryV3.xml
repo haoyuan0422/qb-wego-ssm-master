@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trees>
+    <tree path="/src/main/java/com/wego/common" title="通用代码" extension="" presentableText="" tooltipTitle="" icon="GutterColors"/>
+    <tree path="/src/main/webapp/static" title="静态资源"/>
+    <tree path="/src/main/webapp/WEB-INF/manager" title="后台页面" extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+    <tree path="/src/main/java/com/wego/controller/manager" title="后台控制器"/>
+    <tree path="/src/main/java/com/wego/converter" title="类型转换器"/>
+    <tree path="/src/main/java/com/wego/ex" title="全局异常及处理器" extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+    <tree path="/src/main/java/com/wego/filter" title="过滤器"/>
+    <tree path="/src/main/java/com/wego/controller" title="控制器"/>
+    <tree path="/src/main/java/com/wego/entity/domain" title="实体类"/>
+    <tree path="/src/main/java/com/wego/entity/query" title="查询类"/>
+    <tree path="/src/main/java/com/wego/entity/vo" title="视图类"/>
+    <tree path="/src/main/java/com/wego/mapper" title="" extension="" presentableText="" tooltipTitle="" icon="" textColor="" backgroundColor=""/>
+    <tree path="/src/main/java/com/wego/utils" title="工具包"/>
+    <tree path="/src/main/java/com/wego/common/utils/SnowFlake.java" title="雪花算法"/>
+</trees>

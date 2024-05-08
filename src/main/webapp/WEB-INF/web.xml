@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <welcome-file-list>
+        <welcome-file>init</welcome-file>
+    </welcome-file-list>
+
+    <!-- 配置SpringMVC核心控制器：DispatcherServlet主要负责流程的控制。-->
+    <servlet>
+        <servlet-name>SpringMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-*.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <multipart-config>
+            <!--         上传文件最大多少   -->
+            <max-file-size>20848820</max-file-size>
+            <!--         最大请求大小   -->
+            <max-request-size>418018841</max-request-size>
+            <!--         多大以上的文件可以上传   -->
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpringMVC</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--登录过滤器放行的路径-->
+    <context-param>
+        <param-name>fangXingUri</param-name>
+        <param-value>
+            <!--资源服务器-->
+            wego_resources_server,
+            <!--静态资源-->
+            static,
+
+            <!--获取验证码-->
+            getVerifyCode,
+            <!--校验验证码-->
+            checkVerifyCode,
+
+            <!--项目数据初始化-->
+            init,
+
+            <!--后台首页：欢迎页面-->
+            welcome.html,
+            <!--后台：打开管理员页面-->
+            admin/openLogin,
+            <!--后台：管理员登录-->
+            admin/doLogin,
+
+            <!--前端：打开用户注册页面-->
+            user/openRegister,
+            <!--前端：用户注册-->
+            user/register,
+            <!--前端：打开用户登录页面-->
+            user/openLogin,
+            <!--前端：用户登录-->
+            user/doLogin,
+
+            <!--前端：首页-->
+            index,
+            <!--前端:商品列表-->
+            goods/list,
+            <!--前端：商品详情-->
+            goods/details,
+            <!--加入购物车-->
+            cart/add
+
+        </param-value>
+    </context-param>
+</web-app>

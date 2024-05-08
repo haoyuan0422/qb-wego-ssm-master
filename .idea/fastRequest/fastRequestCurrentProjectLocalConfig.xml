@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="fastRequestCurrentProjectLocalConfig">
+    <option name="cookieList">
+      <list>
+        <DataMapping>
+          <option name="type" value="localhost" />
+          <option name="value" value="JSESSIONID=155CF4805382631601FC7972D84E1D6B; Path" />
+        </DataMapping>
+        <DataMapping>
+          <option name="type" value="http://localhost:8080" />
+          <option name="value" value="JSESSIONID=E18082B8DAED7B63AAA88325A28DCE5C; Path" />
+        </DataMapping>
+        <DataMapping>
+          <option name="type" value="http://localhost:8080/wego" />
+          <option name="value" value="JSESSIONID=9151EE68141C10C3506C9D82ED0C5EAC; Path" />
+        </DataMapping>
+      </list>
+    </option>
+    <option name="domain" value="http://localhost:8080/wego" />
+    <option name="enableEnv" value="local" />
+    <option name="enableProject" value="wego-ssm-jsp" />
+    <option name="initFlag" value="1" />
+  </component>
+</project>

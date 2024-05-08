@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.mapper.OrderItemMapper">
+    <resultMap id="BaseResultMap" type="OrderItem">
+        <!--@mbg.generated generated on Tue Jul 11 16:02:23 CST 2023.-->
+        <!--@Table tb_order_item-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="amount" jdbcType="INTEGER" property="amount"/>
+        <result column="money" jdbcType="DECIMAL" property="money"/>
+        <result column="goods_id" jdbcType="BIGINT" property="goodsId"/>
+        <result column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="state" jdbcType="TINYINT" property="state"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Tue Jul 11 16:02:23 CST 2023.-->
+        id, amount, money, goods_id, order_id, `state`, create_time, update_time
+    </sql>
+
+    <select id="selectList" resultMap="BaseResultMap" parameterType="com.wego.entity.query.OrderItemQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_order_item
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+</mapper>

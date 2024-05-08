@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.mapper.AdminMapper">
+    <resultMap id="BaseResultMap" type="Admin">
+        <!--@mbg.generated generated on Fri Jul 07 19:16:32 CST 2023.-->
+        <!--@Table tb_admin-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="qq" jdbcType="VARCHAR" property="qq"/>
+        <result column="wechat" jdbcType="VARCHAR" property="wechat"/>
+        <result column="intro" jdbcType="VARCHAR" property="intro"/>
+        <result column="state" jdbcType="TINYINT" property="state"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Fri Jul 07 19:16:32 CST 2023.-->
+        id, nickname, account, `password`, avatar, phone, email, qq, wechat, intro, `state`,
+        create_time, update_time
+    </sql>
+
+    <select id="selectList" resultMap="BaseResultMap" parameterType="com.wego.entity.query.AdminQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_admin
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                and nickname like concat('%', #{nickname,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="account != null and account != ''">
+                or account like concat('%', #{account,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                or phone like concat('%', #{phone,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="state != null">
+                and state = #{state,jdbcType=TINYINT}
+            </if>
+        </where>
+        order by id desc, create_time desc
+    </select>
+</mapper>

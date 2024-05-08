@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="User">
+        <!--@mbg.generated generated on Sat Jul 08 13:25:35 CST 2023.-->
+        <!--@Table tb_user-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="gender" jdbcType="BIT" property="gender"/>
+        <result column="birth" jdbcType="DATE" property="birth"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="phone" jdbcType="CHAR" property="phone"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="priority" jdbcType="INTEGER" property="priority"/>
+        <result column="state" jdbcType="TINYINT" property="state"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Sat Jul 08 13:25:35 CST 2023.-->
+        id,
+        nickname,
+        avatar,
+        gender,
+        birth,
+        email,
+        phone,
+        account,
+        `password`,
+        priority,
+        `state`,
+        create_time,
+        update_time
+    </sql>
+
+
+    <select id="selectList" resultMap="BaseResultMap" parameterType="com.wego.entity.query.UserQuery">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                and nickname like CONCAT(CONCAT('%', #{nickname}), '%')
+            </if>
+            <if test="phone != null and phone != ''">
+                or phone like CONCAT(CONCAT('%', #{phone}), '%')
+            </if>
+            <if test="gender != null">
+                and gender = #{gender}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+        </where>
+        order by update_time desc, priority desc
+    </select>
+</mapper>

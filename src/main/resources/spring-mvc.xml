@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/context
+   https://www.springframework.org/schema/context/spring-context.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc.xsd
+   http://www.springframework.org/schema/aop
+   https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <mvc:annotation-driven/>
+
+    <!-- 让SpringMVC不拦截静态资源-->
+    <mvc:default-servlet-handler/>
+
+    <!-- 启动自动扫描：使用注解开发，不用配置controller。该句必须有，否则在web.xml的
+        DispatcherServlet中不能指定springmvc.xml，而必须指定applicationContext.xml -->
+    <context:component-scan base-package="com.wego.controller"/>
+
+    <!-- 视图解析器 ，可以显式设置，也可以不设置，不设置会依据SpringMVC的默认设置-->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--  启动对@AspectJ注解的支持 -->
+    <aop:aspectj-autoproxy/>
+
+    <!--文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+    </bean>
+</beans>
